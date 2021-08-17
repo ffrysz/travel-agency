@@ -24,10 +24,29 @@ export const getFilteredTrips = ({ trips, filters }) => {
   }
 
   // TODO - sort by cost descending (most expensive goes first)
+  console.log(output);
 
-  // output = output.map(trip => {
-  //   let cost = trip.cost.substr(1, trip.cost.length);
+  // output = output.sort(function (a, b) {
+  //   let arg1 = a.cost.substr(1, a.cost.length);
+  //   let arg2 = b.cost.substr(1, b.cost.length);
+  //   let arg3 = arg1.replace(/,/, '');
+  //   let arg4 = arg2.replace(/,/, '');
+  //   let arg5 = parseFloat(arg3);
+  //   let arg6 = parseFloat(arg4);
+
+  //   if (arg5 > arg6) return -1;
+  //   if (arg5 < arg6) return 1;
+  //   return 0;
   // });
+
+  output = output.sort(function (a, b) {
+    const arg1 = parseFloat(a.cost.substr(1, a.cost.length).replace(/,/, ''));
+    const arg2 = parseFloat(b.cost.substr(1, b.cost.length).replace(/,/, ''));
+
+    if (arg1 > arg2) return -1;
+    if (arg1 < arg2) return 1;
+    return 0;
+  });
 
   return output;
 };
