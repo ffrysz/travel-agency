@@ -17,6 +17,7 @@ import NotFound from './components/views/NotFound/NotFound';
 
 import parseTrips from './utils/parseTrips';
 import { setMultipleStates } from './redux/globalRedux';
+import { AnimatedSwitch } from 'react-router-transition';
 
 class App extends React.Component {
   static propTypes = {
@@ -41,7 +42,11 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <MainLayout>
-          <Switch location={location}>
+          <AnimatedSwitch location={location}
+            atEnter={{ opacity: 0 }}
+            atLeave={{ opacity: 0 }}
+            atActive={{ opacity: 1 }}
+          >
             <Route exact path='/' component={Home} />
             <Route exact path='/trips' component={Trips} />
             <Route exact path='/countries' component={Countries} />
@@ -51,9 +56,9 @@ class App extends React.Component {
             {/* TODO - add more routes for other views */}
             <Route exact path='/info' component={Info} />
             <Route path='*' component={NotFound} />
-          </Switch>
+          </AnimatedSwitch>
         </MainLayout>
-      </BrowserRouter>
+      </BrowserRouter >
     );
   }
 }
