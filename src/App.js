@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styles from './App.scss';
 
 import MainLayout from './components/layout/MainLayout/MainLayout';
 
@@ -55,6 +56,7 @@ class App extends React.Component {
               top: 0,
               opacity: 1,
             }}
+            className={styles.wrapper}
           >
             <Route exact path='/' component={Home} />
             <Route exact path='/trips' component={Trips} />

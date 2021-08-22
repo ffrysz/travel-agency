@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './OrderSummary.scss';
-import calculateTotal from '../../../utils/calculateTotal';
-import formatPrice from '../../../utils/formatPrice';
+import { calculateTotal } from '../../../utils/calculateTotal';
+import { formatPrice } from '../../../utils/formatPrice';
 
 const OrderSummary = (props) => {
-  console.log(props);
 
-  // const totalCost = formatPrice(calculateTotal(props.tripCost, props.options));
-  const totalCost = 100;
+  const totalCost = formatPrice(calculateTotal(props.tripCost, props.options));
 
   return (
     <h2 className={styles.component}>
