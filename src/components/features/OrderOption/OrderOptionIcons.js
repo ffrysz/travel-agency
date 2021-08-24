@@ -4,7 +4,7 @@ import styles from './OrderOption.scss';
 import { formatPrice } from '../../../utils/formatPrice';
 import Icon from '../../common/Icon/Icon';
 
-const OrderOptionIcons = ({ values, required, currentValue, setOptionValue }) => {
+const OrderOptionIcons = ({ values, required, setOptionValue }) => {
   return (
     <div className={styles.component}>
       {required ? '' : (
@@ -13,7 +13,7 @@ const OrderOptionIcons = ({ values, required, currentValue, setOptionValue }) =>
         </div>
       )}
       {values.map(value => (
-        <div className={styles.icon} key={value.id} onClick={event => console.log(event.currentTarget.id)}>
+        <div className={styles.icon} key={value.id} onClick={event => setOptionValue(value.id)}>
           <Icon name={value.icon} />{value.name}({formatPrice(value.price)})
         </div>
       ))}
