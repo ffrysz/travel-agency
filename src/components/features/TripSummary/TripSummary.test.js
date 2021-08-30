@@ -37,4 +37,21 @@ describe('Component TripSummary', () => {
     expect(component.find('.details').childAt(1).text()).toContain(testCost);
   });
 
+  it('should render correct tags', () => {
+    const testTags = ['abc', 'xyz', '123'];
+    const component = shallow(<TripSummary id='testId' image='image.jpg' name='testName' cost='testCost' days={2} tags={testTags} />);
+
+    // expect(component.find('.tag').text()).toContain(testName);
+    expect(component.find('.tag').at(0).text()).toContain(testTags[0]);
+    expect(component.find('.tag').at(1).text()).toContain(testTags[1]);
+    expect(component.find('.tag').at(2).text()).toContain(testTags[2]);
+  });
+
+  it('should not render div without tags array', () => {
+    const testTags = [];
+    const component = shallow(<TripSummary id='testId' image='image.jpg' name='testName' cost='testCost' days={2} tags={testTags} />);
+
+    // expect(component.find('.tag').text()).toContain(testName);
+    expect(component.find('.tags').text()).toBeFalsy();
+  });
 });
