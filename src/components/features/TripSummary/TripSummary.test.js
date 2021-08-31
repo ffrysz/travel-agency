@@ -42,9 +42,13 @@ describe('Component TripSummary', () => {
     const component = shallow(<TripSummary id='testId' image='image.jpg' name='testName' cost='testCost' days={2} tags={testTags} />);
 
     // expect(component.find('.tag').text()).toContain(testName);
-    expect(component.find('.tag').at(0).text()).toContain(testTags[0]);
-    expect(component.find('.tag').at(1).text()).toContain(testTags[1]);
-    expect(component.find('.tag').at(2).text()).toContain(testTags[2]);
+    for (let i = 0; i < testTags.length; i++) {
+      expect(component.find('.tag').at(i).text()).toContain(testTags[i]);
+    }
+
+    // expect(component.find('.tag').at(0).text()).toContain(testTags[0]);
+    // expect(component.find('.tag').at(1).text()).toContain(testTags[1]);
+    // expect(component.find('.tag').at(2).text()).toContain(testTags[2]);
   });
 
   it('should not render div without tags array', () => {
