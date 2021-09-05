@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "npm-run-all -p start:* server:*",
+    "start:dev": "webpack-dev-server --mode development --open --hot",
     "server:api": "node server.js",
-    "server:dev": "react-scripts start",
     "build": "webpack --mode production",
     "lint": "eslint src/",
     "test": "jest --colors",
