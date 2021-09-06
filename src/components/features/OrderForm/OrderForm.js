@@ -10,33 +10,38 @@ import { calculateTotal } from '../../../utils/calculateTotal';
 import Button from '../../common/Button/Button.js';
 
 const sendOrder = (options, tripCost, tripId, tripName, countryId) => {
-  const totalCost = formatPrice(calculateTotal(tripCost, options));
 
-  const payload = {
-    ...options,
-    totalCost,
-    tripId,
-    tripName,
-    countryId,
-  };
+  if (options.name !== '' && options.contact !== '') {
+    const totalCost = formatPrice(calculateTotal(tripCost, options));
 
-  const url = settings.db.url + '/' + settings.db.endpoint.orders;
+    const payload = {
+      ...options,
+      totalCost,
+      tripId,
+      tripName,
+      countryId,
+    };
 
-  const fetchOptions = {
-    cache: 'no-cache',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  };
+    const url = settings.db.url + '/' + settings.db.endpoint.orders;
 
-  fetch(url, fetchOptions)
-    .then(function (response) {
-      return response.json();
-    }).then(function (parsedResponse) {
-      console.log('parsedResponse', parsedResponse);
-    });
+    const fetchOptions = {
+      cache: 'no-cache',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+
+    fetch(url, fetchOptions)
+      .then(function (response) {
+        return response.json();
+      }).then(function (parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+      });
+  } else {
+    alert('Please fill in name and contact fields!');
+  }
 };
 
 const OrderForm = (props) => {
