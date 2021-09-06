@@ -5,7 +5,7 @@ import styles from './OrderOption.scss';
 const OrderOptionText = ({ setOptionValue }) => {
   return (
     <div>
-      <input type="text" onChange={event => setOptionValue(event.currentTarget.value)}></input>
+      <input type="text" onChange={event => setOptionValue(event.currentTarget.value)} required></input>
     </div>
   );
 };
