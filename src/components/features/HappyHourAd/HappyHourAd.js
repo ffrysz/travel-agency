@@ -4,6 +4,14 @@ import styles from './HappyHourAd.scss';
 
 class HappyHourAd extends React.Component {
 
+  constructor() {
+    super();
+
+    setInterval(() => {
+      this.forceUpdate();
+    }, 1000);
+    /* run this.forceUpdate() every second */
+  }
 
   getCountdownTime() {
     const currentTime = new Date();
@@ -16,14 +24,21 @@ class HappyHourAd extends React.Component {
   }
 
   render() {
+
+    const cdTime = this.getCountdownTime();
+
     return (
-      <div>
-        <h2 className='title'>{this.props.title}</h2>
-        <div className='promoDescription'>{this.props.promoDescription}</div>
-        <div className='countdown'>{this.getCountdownTime()}</div>
+      <div className={styles.component}>
+        <h2 className={styles.title}>{this.props.title}</h2>
+        <div className={styles.countdown}>{cdTime > 23 * 60 * 60 ? this.props.promoDescription : cdTime}</div>
       </div>
     );
   }
 }
+
+HappyHourAd.propTypes = {
+  title: PropTypes.string,
+  promoDescription: PropTypes.string,
+};
 
 export default HappyHourAd;

@@ -8,6 +8,7 @@ describe('Component Hero', () => {
     const expectedImage = 'image.jpg';
     const component = shallow(<Hero titleText={expectedTitle} imageSrc={expectedImage} />);
     expect(component).toBeTruthy();
+    expect(component.find('HappyHourAd').length).toEqual(1);
   });
 
   it('should throw error without required props', () => {
